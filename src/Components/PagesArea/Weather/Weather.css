@@ -1,0 +1,330 @@
+.Weather {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgb(255 255 255 / 24%);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.Weather h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 300;
+    font-size: 2.2rem;
+}
+
+.weather-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* When weather data is present, adjust back to space-between */
+.Weather.has-data .weather-nav {
+    justify-content: space-between;
+}
+
+.weather-data {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeIn 0.5s ease;
+}
+
+.weather-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.weather-welcome {
+    margin: auto;
+    position: relative;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cloud-image-container {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+}
+
+.cloud-image {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+}
+
+.cloud-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    z-index: 2;
+    padding: 20px;
+}
+
+.welcome-icon {
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.welcome-icon svg {
+    stroke: #4c8bf5;
+}
+
+.weather-welcome h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+
+.weather-welcome p {
+    color: #666;
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Loading and other elements */
+.weather-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    animation: fadeIn 0.3s ease;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(74, 138, 244, 0.2);
+    border-radius: 50%;
+    border-top-color: #4c8bf5;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+.weather-loading p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.weather-error {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 40px 0;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.weather-error p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.clothing-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #4c8bf5, #3a78e7);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(74, 138, 244, 0.3);
+    transition: all 0.3s ease;
+}
+
+.clothing-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 138, 244, 0.4);
+    background: linear-gradient(135deg, #3a78e7, #2d6ad9);
+}
+
+.clothing-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(74, 138, 244, 0.3);
+}
+
+.clothing-icon img {
+    width: 18px;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: transparent;
+    border-radius: 15px;
+    animation: slideUp 0.4s ease;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.close-button:hover {
+    background-color: white;
+    transform: rotate(90deg);
+}
+
+.close-button svg {
+    width: 20px;
+    height: 20px;
+    fill: #555;
+}
+
+.popup-content .ClothingRecommendation {
+    margin-top: 0;
+}
+
+.popup-content .recommendation-content {
+    max-height: none;
+    padding: 0 20px 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.WeatherSearch {
+    width: 100%;
+    max-width: 400px;
+}
+
+@media (max-width: 767px) {
+    .weather-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .weather-actions {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .cloud-image-container {
+        width: 450px;
+    }
+}
+
+@media (max-width: 600px) {
+    .Weather h1 {
+        font-size: 1.8rem;
+    }
+
+    .popup-content {
+        width: 95%;
+    }
+
+    .weather-welcome h2 {
+        font-size: 1.5rem;
+    }
+
+    .weather-welcome p {
+        font-size: 1rem;
+    }
+    
+    .cloud-image-container {
+        width: 350px;
+    }
+}

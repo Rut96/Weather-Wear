@@ -1,0 +1,738 @@
+/* .CurrentWeather {
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+}
+
+.day-background {
+    background: linear-gradient(120deg, #3a78e7, #4c8bf5);
+    box-shadow: 0 5px 15px rgba(74, 138, 244, 0.3);
+}
+
+.night-background {
+    background: linear-gradient(120deg, #1a237e, #311b92);
+    box-shadow: 0 5px 15px rgba(26, 35, 126, 0.3);
+}
+
+.day-icon {
+    color: #ffeb3b;
+    filter: drop-shadow(0 0 3px rgba(255, 235, 59, 0.5));
+}
+
+.night-icon {
+    color: #e1e1e1;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+}
+
+.stars-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+    opacity: 0.7;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.star-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.star-2 {
+    top: 30%;
+    right: 25%;
+    animation-delay: 0.5s;
+}
+
+.star-3 {
+    top: 70%;
+    left: 35%;
+    animation-delay: 1s;
+}
+
+.star-4 {
+    top: 40%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+.star-5 {
+    top: 60%;
+    right: 35%;
+    animation-delay: 2s;
+}
+
+.star-6 {
+    top: 15%;
+    right: 50%;
+    animation-delay: 0.7s;
+}
+
+.star-7 {
+    top: 50%;
+    left: 25%;
+    animation-delay: 1.2s;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.7;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.4);
+    }
+}
+
+.cloud-decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cloud-img {
+    position: absolute;
+    transition: opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.cloud-foreground {
+    z-index: 3;
+}
+
+.cloud-foreground.cloud-1 {
+    top: 70%;
+    width: 80px;
+}
+
+.cloud-foreground.cloud-2 {
+    top: 25%;
+    width: 75px;
+}
+
+.cloud-midground {
+    z-index: 2;
+}
+
+.cloud-midground.cloud-3 {
+    top: 45%;
+    width: 65px;
+}
+
+.cloud-midground.cloud-4 {
+    top: 15%;
+    width: 70px;
+}
+
+.cloud-background {
+    z-index: 1;
+}
+
+.cloud-background.cloud-5 {
+    top: 30%;
+    width: 55px;
+}
+
+.cloud-background.cloud-6 {
+    top: 60%;
+    width: 50px;
+}
+
+.cloud-img.wind-right-to-left {
+    right: -80px; 
+    animation-name: cloud-diagonal-right-to-left;
+}
+
+.cloud-img.wind-left-to-right {
+    left: -80px;
+    animation-name: cloud-diagonal-left-to-right;
+}
+
+.cloud-speed-fast {
+    animation-duration: 100s;
+}
+
+.cloud-speed-medium {
+    animation-duration: 130s;
+}
+
+.cloud-speed-slow {
+    animation-duration: 160s;
+}
+
+.cloud-1 {
+    animation-delay: 0s;
+}
+
+.cloud-2 {
+    animation-delay: 7s;
+}
+
+.cloud-3 {
+    animation-delay: 15s;
+}
+
+.cloud-4 {
+    animation-delay: 10s;
+}
+
+.cloud-5 {
+    animation-delay: 5s;
+}
+
+.cloud-6 {
+    animation-delay: 20s;
+}
+
+.night-background .cloud-img {
+    filter: hue-rotate(20deg) brightness(0.7);
+}
+
+.CurrentWeather h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding-right: 30px;
+    position: relative;
+    z-index: 3;
+}
+
+.current-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.condition-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.condition-icon {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+.temperature {
+    text-align: center;
+}
+
+.temperature h3 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 500;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.temperature p {
+    margin: 5px 0 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.extra-info {
+    line-height: 1.7;
+}
+
+.extra-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.extra-info p::before {
+    content: "•";
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+@keyframes cloud-diagonal-right-to-left {
+    0% {
+        transform: translate(0, -50px) rotate(-5deg);
+        opacity: 0; 
+    }
+    10% {
+        opacity: 0.6; 
+        transform: translate(-50px, -25px) rotate(-5deg);
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(calc(-100vw - 100px), 50px) rotate(-5deg); 
+        opacity: 0; 
+    }
+}
+
+@keyframes cloud-diagonal-left-to-right {
+    0% {
+        transform: translate(0, -50px) rotate(5deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6; 
+        transform: translate(50px, -25px) rotate(5deg);
+    }
+    80% {
+        opacity: 0.6; 
+    }
+    100% {
+        transform: translate(calc(100vw + 100px), 50px) rotate(5deg); 
+        opacity: 0; 
+    }
+}
+
+.cloud-img {
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@media (max-width: 600px) {
+    .current-details {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .temperature {
+        order: -1;
+    }
+
+    .temperature h3 {
+        font-size: 2.5rem;
+    }
+
+    .extra-info {
+        width: 100%;
+    }
+} */
+
+
+
+.CurrentWeather {
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+}
+
+/* Day background - blue sky gradient */
+.day-background {
+    background: linear-gradient(120deg, #3a78e7, #4c8bf5);
+    box-shadow: 0 5px 15px rgba(74, 138, 244, 0.3);
+}
+
+/* Night background - dark blue to indigo gradient */
+.night-background {
+    background: linear-gradient(120deg, #1a237e, #311b92);
+    box-shadow: 0 5px 15px rgba(26, 35, 126, 0.3);
+}
+
+.CurrentWeather .day-icon {
+    color: #ffeb3b;
+    filter: drop-shadow(0 0 3px rgba(255, 235, 59, 0.5));
+}
+
+.CurrentWeather .night-icon {
+    color: #e1e1e1;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+}
+
+/* Stars for night mode - much more visible */
+.CurrentWeather .stars-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Extremely high z-index to ensure visibility */
+    pointer-events: none;
+}
+
+/* Make stars much more visible */
+.CurrentWeather .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    width: 3px; /* Larger base size */
+    height: 3px;
+    opacity: 0.9; /* Higher opacity */
+    animation: twinkle 2s ease-in-out infinite;
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.5); /* Much stronger glow */
+}
+
+.CurrentWeather .star-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+    width: 4px; /* Even larger */
+    height: 4px;
+}
+
+.CurrentWeather .star-2 {
+    top: 30%;
+    right: 25%;
+    animation-delay: 0.5s;
+    width: 3.5px;
+    height: 3.5px;
+}
+
+.CurrentWeather .star-3 {
+    top: 70%;
+    left: 35%;
+    animation-delay: 1s;
+    width: 3px;
+    height: 3px;
+}
+
+.CurrentWeather .star-4 {
+    top: 40%;
+    right: 15%;
+    animation-delay: 1.5s;
+    width: 4px;
+    height: 4px;
+}
+
+.CurrentWeather .star-5 {
+    top: 60%;
+    right: 35%;
+    animation-delay: 2s;
+    width: 3.5px;
+    height: 3.5px;
+}
+
+.CurrentWeather .star-6 {
+    top: 15%;
+    right: 50%;
+    animation-delay: 0.7s;
+    width: 3.5px;
+    height: 3.5px;
+}
+
+.CurrentWeather .star-7 {
+    top: 50%;
+    left: 25%;
+    animation-delay: 1.2s;
+    width: 3px;
+    height: 3px;
+}
+
+/* Add more stars for better visibility */
+.CurrentWeather .star-8 {
+    top: 25%;
+    left: 45%;
+    animation-delay: 0.3s;
+    width: 4px;
+    height: 4px;
+}
+
+.CurrentWeather .star-9 {
+    top: 65%;
+    right: 45%;
+    animation-delay: 0.8s;
+    width: 3.5px;
+    height: 3.5px;
+}
+
+.CurrentWeather .star-10 {
+    top: 55%;
+    left: 65%;
+    animation-delay: 1.7s;
+    width: 4px;
+    height: 4px;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.9;
+        box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.8); /* Much stronger glow */
+    }
+}
+
+/* Cloud decorations */
+.CurrentWeather .cloud-decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.CurrentWeather .cloud-img {
+    position: absolute;
+    transition: opacity 0.3s ease;
+    transform-origin: center;
+}
+
+/* Cloud layers positioning */
+/* Foreground clouds - large, close */
+.CurrentWeather .cloud-foreground {
+    z-index: 3;
+}
+
+.CurrentWeather .cloud-foreground.cloud-1 {
+    top: 70%;
+    width: 80px;
+}
+
+.CurrentWeather .cloud-foreground.cloud-2 {
+    top: 25%;
+    width: 75px;
+}
+
+/* Midground clouds - medium distance */
+.CurrentWeather .cloud-midground {
+    z-index: 2;
+}
+
+.CurrentWeather .cloud-midground.cloud-3 {
+    top: 45%;
+    width: 65px;
+}
+
+.CurrentWeather .cloud-midground.cloud-4 {
+    top: 15%;
+    width: 70px;
+}
+
+/* Background clouds - small, distant */
+.CurrentWeather .cloud-background {
+    z-index: 1;
+}
+
+.CurrentWeather .cloud-background.cloud-5 {
+    top: 30%;
+    width: 55px;
+}
+
+.CurrentWeather .cloud-background.cloud-6 {
+    top: 60%;
+    width: 50px;
+}
+
+/* Cloud diagonal movement - Right to Left (top right to bottom left) */
+.CurrentWeather .cloud-img.wind-right-to-left {
+    right: -80px; /* Start off-screen to the right */
+    animation-name: cloud-diagonal-right-to-left;
+}
+
+/* Cloud diagonal movement - Left to Right (top left to bottom right) */
+.CurrentWeather .cloud-img.wind-left-to-right {
+    left: -80px; /* Start off-screen to the left */
+    animation-name: cloud-diagonal-left-to-right;
+}
+
+/* Cloud speeds - different animation durations for distance effect */
+.CurrentWeather .cloud-speed-fast {
+    animation-duration: 100s;
+}
+
+.CurrentWeather .cloud-speed-medium {
+    animation-duration: 130s;
+}
+
+.CurrentWeather .cloud-speed-slow {
+    animation-duration: 160s;
+}
+
+/* Delay each cloud's animation start */
+.CurrentWeather .cloud-1 {
+    animation-delay: 0s;
+}
+
+.CurrentWeather .cloud-2 {
+    animation-delay: 7s;
+}
+
+.CurrentWeather .cloud-3 {
+    animation-delay: 15s;
+}
+
+.CurrentWeather .cloud-4 {
+    animation-delay: 10s;
+}
+
+.CurrentWeather .cloud-5 {
+    animation-delay: 5s;
+}
+
+.CurrentWeather .cloud-6 {
+    animation-delay: 20s;
+}
+
+/* Night mode makes clouds more translucent */
+.CurrentWeather .night-background .cloud-img {
+    filter: hue-rotate(20deg) brightness(0.7);
+    opacity: 0.3 !important; /* Make clouds even more transparent in night mode */
+}
+
+/* Content styling */
+.CurrentWeather h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    padding-right: 30px;
+    position: relative;
+    z-index: 20; /* Even higher z-index for content */
+}
+
+.CurrentWeather .current-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20; /* Even higher z-index for content */
+}
+
+.CurrentWeather .condition-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.CurrentWeather .condition-icon {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+.CurrentWeather .temperature {
+    text-align: center;
+}
+
+.CurrentWeather .temperature h3 {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: 500;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.CurrentWeather .temperature p {
+    margin: 5px 0 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.CurrentWeather .extra-info {
+    line-height: 1.7;
+}
+
+.CurrentWeather .extra-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.CurrentWeather .extra-info p::before {
+    content: "•";
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Diagonal cloud animations - Right to Left (top right to bottom left) */
+@keyframes cloud-diagonal-right-to-left {
+    0% {
+        transform: translate(0, -50px) rotate(-5deg);
+        opacity: 0; /* Start invisible */
+    }
+    10% {
+        opacity: 0.6; /* Fade in */
+        transform: translate(-50px, -25px) rotate(-5deg);
+    }
+    80% {
+        opacity: 0.6; /* Stay visible */
+    }
+    100% {
+        transform: translate(calc(-100vw - 100px), 50px) rotate(-5deg); /* Move diagonally */
+        opacity: 0; /* Fade out */
+    }
+}
+
+/* Diagonal cloud animations - Left to Right (top left to bottom right) */
+@keyframes cloud-diagonal-left-to-right {
+    0% {
+        transform: translate(0, -50px) rotate(5deg);
+        opacity: 0; /* Start invisible */
+    }
+    10% {
+        opacity: 0.6; /* Fade in */
+        transform: translate(50px, -25px) rotate(5deg);
+    }
+    80% {
+        opacity: 0.6; /* Stay visible */
+    }
+    100% {
+        transform: translate(calc(100vw + 100px), 50px) rotate(5deg); /* Move diagonally */
+        opacity: 0; /* Fade out */
+    }
+}
+
+/* Ensure infinite loop with clean restart */
+.cloud-img {
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@media (max-width: 600px) {
+    .CurrentWeather .current-details {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .CurrentWeather .temperature {
+        order: -1;
+    }
+
+    .CurrentWeather .temperature h3 {
+        font-size: 2.5rem;
+    }
+
+    .CurrentWeather .extra-info {
+        width: 100%;
+    }
+}

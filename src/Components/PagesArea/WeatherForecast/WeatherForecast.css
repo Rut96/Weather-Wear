@@ -1,0 +1,256 @@
+.WeatherForecast {
+    padding: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.WeatherForecast h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 400;
+    color: #333;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.forecast-clouds {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.forecast-cloud {
+    position: absolute;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.cloud-left {
+    top: 100px;
+    left: -20px;
+    width: 60px;
+    z-index: 2;
+    animation: forecast-drift-right 40s linear infinite;
+}
+
+.cloud-right {
+    top: 30px;
+    right: -15px;
+    width: 50px;
+    z-index: 2;
+    animation: forecast-drift-left 35s linear infinite;
+}
+
+/* Fixed bottom cloud positioning */
+.cloud-bottom {
+    position: absolute;
+    top: 300px;
+    left: 40px;
+    width: 60px;
+    height: 40px; 
+    opacity: 0.5;
+    z-index: 2;
+    animation: forecast-pulse 10s ease-in-out infinite;
+}
+
+.forecast-days {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 5px 20px;
+    position: relative;
+    z-index: 3; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+    justify-content: center;
+}
+
+.forecast-days::-webkit-scrollbar {
+    height: 6px;
+}
+
+.forecast-days::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.forecast-days::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.forecast-day {
+    flex: 0 0 auto;
+    width: 160px;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 3;
+}
+
+.forecast-day:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.forecast-day.today {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(74, 144, 226, 0.2));
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.15);
+}
+
+.forecast-day.today:hover {
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.2);
+}
+
+.forecast-date {
+    margin: 0 0 10px;
+    font-weight: 600;
+    color: #444;
+    font-size: 1rem;
+}
+
+.forecast-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin: 5px 0;
+}
+
+.forecast-icon {
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+.forecast-condition {
+    margin: 5px 0 10px;
+    font-size: 0.9rem;
+    color: #555;
+    height: 36px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.forecast-temps {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 5px 0 15px;
+}
+
+.max {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 1.1rem;
+}
+
+.min {
+    color: #3498db;
+    font-size: 1.1rem;
+}
+
+.forecast-details {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.forecast-detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.detail-label {
+    opacity: 0.8;
+}
+
+.detail-value {
+    font-weight: 500;
+}
+
+@keyframes forecast-drift-right {
+    0% {
+        transform: translateX(-60px);
+    }
+    100% {
+        transform: translateX(calc(100% + 60px));
+    }
+}
+
+@keyframes forecast-drift-left {
+    0% {
+        transform: translateX(calc(100% + 50px));
+    }
+    100% {
+        transform: translateX(-50px);
+    }
+}
+
+@keyframes forecast-pulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 600px) {
+    .forecast-days {
+        justify-content: flex-start;
+        padding-bottom: 15px;
+    }
+    
+    .forecast-day {
+        width: 110px;
+        padding: 12px 8px;
+    }
+    
+    .forecast-icon {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .forecast-date, .max, .min {
+        font-size: 0.95rem;
+    }
+    
+    .forecast-condition {
+        font-size: 0.8rem;
+        height: 32px;
+    }
+    
+    .forecast-details {
+        padding-top: 8px;
+    }
+    
+    .forecast-detail {
+        font-size: 0.75rem;
+    }
+}
