@@ -54,7 +54,7 @@ export function Weather(): JSX.Element {
 
     return (
         <div className={`Weather ${weatherData ? 'has-data' : ''}`}>
-            <h1>Weather Forecast</h1>
+            <h1>Weather Wear</h1>
 
             <div className="weather-nav">
                 <WeatherSearch onSearch={handleCitySearch} />

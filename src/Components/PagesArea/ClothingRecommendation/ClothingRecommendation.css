@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.ClothingRecommendation .in-popup {
+.ClothingRecommendation.in-popup {
     margin-top: 0;
     box-shadow: none;
 }
@@ -31,7 +31,7 @@
     background-color: rgba(255, 255, 255, 0.85);
 }
 
-.recommendation-header:hover:not( .in-popup .recommendation-header) {
+.recommendation-header:hover:not(.in-popup .recommendation-header) {
     background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -73,7 +73,7 @@
     fill: #333;
 }
 
-.expand-button .expanded {
+.expand-button.expanded {
     transform: rotate(180deg);
 }
 
@@ -84,7 +84,7 @@
     padding: 0 20px;
 }
 
-.recommendation-content .expanded {
+.recommendation-content.expanded {
     max-height: 800px; 
     padding: 0 20px 20px;
 }
@@ -131,6 +131,31 @@
     line-height: 1.5;
 }
 
+/* New styles for images */
+.item-with-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.item-image-container {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.item-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 .accessories {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 15px;
@@ -152,21 +177,53 @@
     font-weight: 500;
 }
 
-.accessories ul {
+.accessories-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 10px;
+    gap: 15px;
 }
 
-.accessories li {
+.accessories-list li {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 0;
-    padding: 5px 0;
+    padding: 5px;
     color: #333;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accessories-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.accessory-image-container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.accessory-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.accessory-name {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0 5px;
 }
 
 .accessory-bullet {
@@ -187,8 +244,8 @@
         grid-template-columns: 1fr;
     }
     
-    .accessories ul {
-        grid-template-columns: 1fr;
+    .accessories-list {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     }
     
     .recommendation-header h2 {
