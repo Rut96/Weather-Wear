@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import "./ClothingRecommendation.css";
 import { WeatherResponseModel } from "../../../Models/WeatherResponseModel";
 
-import heavyWinterCoat from '../../../Assets/Images/clothes/heavy-winter-coat-with-thermal-layer.jpg'
-import winterCoat from '../../../Assets/Images/clothes/winter-coat-with-sweater.jpg'
-import heavySweater from '../../../Assets/Images/clothes/heavy-sweater.jpg'
-import lightJacket from '../../../Assets/Images/clothes/light-jacket.jpg'
-import longSleeveShirt from '../../../Assets/Images/clothes/long-sleeve-shirt.jpg'
-import Tshirt from '../../../Assets/Images/clothes/T-shirt.jpg'
-import lightShirt from '../../../Assets/Images/clothes/light-shirt.jpg'
-import breathableShirt from '../../../Assets/Images/clothes/breathable-shirt.avif'
+import heavyWinterCoat from '../../../Assets/Images/clothesArt/heavy-winter-coat-with-thermal-layer.png';
+import winterCoat from '../../../Assets/Images/clothesArt/winter-coat-with-sweater.png';
+import heavySweater from '../../../Assets/Images/clothesArt/medium-jacket-or-heavy-sweater.png';
+import lightJacket from '../../../Assets/Images/clothesArt/light-jacket-or-sweater.png';
+import longSleeveShirt from '../../../Assets/Images/clothesArt/long-sleeve-shirt--optional-light-sweater.png';
+import Tshirt from '../../../Assets/Images/clothesArt/t-shirt--optional-light-overshirt.png';
+import lightShirt from '../../../Assets/Images/clothesArt/light-shirt.png';
+import breathableShirt from '../../../Assets/Images/clothesArt/breathable-shirt.png';
 
-import thickThermalJeans from '../../../Assets/Images/clothes/thick-jeans-with-thermal-underwear.jpg'
-import thickJeans from '../../../Assets/Images/clothes/thick-jeans.jpeg'
-import longPants from '../../../Assets/Images/clothes/long-pants.webp'
-import lightPants from '../../../Assets/Images/clothes/light-pants.webp'
-import shorts from '../../../Assets/Images/clothes/shorts.jpeg'
+import thickThermalJeans from '../../../Assets/Images/clothesArt/thick-jeans-with-thermal-underwear.png'
+import thickJeans from '../../../Assets/Images/clothesArt/thick-jeans.png'
+import longPants from '../../../Assets/Images/clothesArt/long-pants.png'
+import lightPantsOrShorts from '../../../Assets/Images/clothesArt/light-pants-shorts.png'
+import lightPants from '../../../Assets/Images/clothesArt/light-pants.png'
+import shorts from '../../../Assets/Images/clothesArt/shorts.png'
 
 
 export interface ClothingRecommendation {
@@ -54,7 +55,7 @@ const clothingImages: {
         "Thick pants/jeans": thickJeans,
         "Long pants": longPants,
         "Light pants or jeans": lightPants,
-        "Light pants or shorts": shorts,
+        "Light pants or shorts": lightPantsOrShorts,
         "Shorts or light pants": shorts,
         "Shorts": shorts
     },
